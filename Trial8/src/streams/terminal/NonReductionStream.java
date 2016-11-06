@@ -27,9 +27,17 @@ public class NonReductionStream {
 		Stream<String> finiteStream1 =  Stream.of("monkey", "1", "gorilla");
 		// generate(Supplier s)
 		Stream<String> infiniteStream1 = Stream.generate(() -> "ape");
-		finiteStream1.anyMatch(s -> Character.isLetter(s.charAt(0)));
-		finiteStream1.allMatch(s -> Character.isLetter(s.charAt(0)));
-		finiteStream1.noneMatch(s -> Character.isLetter(s.charAt(0)));
+		finiteStream1.anyMatch(s -> Character.isLetter(s.charAt(0))); // true
+		finiteStream1.allMatch(s -> Character.isLetter(s.charAt(0))); // false
+		finiteStream1.noneMatch(s -> Character.isLetter(s.charAt(0))); // false
+		// infiniteStream1.anyMatch(predicate) terminates others doesnt terminate
+		
+		// forEach 
+		// doesnt terminate in infinite stream
+		// void forEach(Consumer action)
+		// Note: forEachLoop of Java5 doesnt work on stream
+		Stream<String> finiteStream2 = Stream.of("monkey" , "gorilla");
+		finiteStream2.forEach(System.out::print);
 		
 	}
 
